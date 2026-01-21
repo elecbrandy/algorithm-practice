@@ -14,22 +14,20 @@ int main() {
     int L;
     long long M = 1234567891;
     cin >> L;
-    char a[60] = {0};
 
-    long long result = 0;
-
+    unsigned long long result = 0;
 
     for (int i = 0; i < L; i++) {
         char tmp = 0;
         cin >> tmp;
         
-        long long r = 1;
+        unsigned long long r = 1;
         for (int j = 0; j < i; j++) {
-            r *= 31;
+            r = (r * 31) % M;
         }
         result += ((tmp - 'a' + 1) * r) % M;
-        // cout << (tmp - 'a' + 1) * r;
+        result %= M;
     }
-    cout << result;
+    cout << result % M;
     return 0;
 }
