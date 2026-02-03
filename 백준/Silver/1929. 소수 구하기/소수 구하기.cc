@@ -34,7 +34,7 @@ int main() {
     for (int i = 2; i < t; i++) {
         for (int j = 0; j < v.size(); j++) {
             if (v[j] == 1) {
-                cout << "asdf\n";
+                // cout << "asdf\n";
                 v[j] = INT_MIN;
                 continue;
             }
