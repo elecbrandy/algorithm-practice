@@ -6,6 +6,22 @@
 
 using namespace std;
 
+bool search(vector<string> &v, int start, int end, string &key) {
+    if (start > end)
+        return false;
+    
+    int mid = (end + start) / 2;
+    
+    if (v[mid] == key) {
+        // cout << "found key: " << key << " at mid: " << mid << "\n";
+        return true;
+    } else if (v[mid] < key) {
+        return search(v, mid + 1, end, key);
+    } else {
+        return search(v, start, mid - 1, key);
+    }
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -14,23 +30,23 @@ int main() {
     int n, m = 0;
     cin >> n >> m;
 
-    map<string, int> input;
+    vector<string> input(n);
     vector<string> result;
 
     // 듣도 못한
     for (int i = 0; i < n; i++) {
-        string tmp;
-        cin >> tmp;
-        input[tmp] = 10;
+        cin >> input[i];
     }
+    
+    sort(input.begin(), input.end());
 
     // 보도 못한
     for (int i = 0; i < m; i++) {
-        string tmp;
-        cin >> tmp;
+        string key;
+        cin >> key;
 
-        if (input.end() != input.find(tmp)) {
-            result.push_back(tmp);
+        if (search(input, 0, input.size() - 1, key) == true) {
+            result.push_back(key);
         }
     }
 
